@@ -1,7 +1,15 @@
 package com.example
 
-class AutoTellerMachine {
+import java.lang.IllegalStateException
+
+class AutoTellerMachine(private val printer: Printer, private val bankingService: BankingService) {
     fun withdraw(amount: Int) {
-        //WRITE CODE HERE.
+        try {
+            bankingService.withdraw(amount)
+            printer.print("${amount} withdrawal successful")
+
+        } catch (e: IllegalStateException) {
+            printer.print("Error withdrawing")
+        }
     }
 }

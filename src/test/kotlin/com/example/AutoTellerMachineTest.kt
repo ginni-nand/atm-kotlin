@@ -12,8 +12,11 @@ class AutoTellerMachineTest : StringSpec({
 
     }
     "should print a receipt if money is withdrawn successfully"  {
-
+   // verify if printer was called or not
+        //mock
         val printer = FakePrinter()
+        //just return a fake response . does not care about verification
+        //stub
         val fakeBankingService =FakeBankingService(true)
         AutoTellerMachine(printer,fakeBankingService).withdraw(800)
         printer.count shouldBe 1
